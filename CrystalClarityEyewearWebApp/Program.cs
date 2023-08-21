@@ -28,6 +28,13 @@ builder.Services.Configure<MailSettings>(mailsettings);               // đăng 
 
 builder.Services.AddTransient<IEmailSender, SendMailService>();       // Đăng ký dịch vụ Mail
 
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.LoginPath = "/login/";
+    options.LogoutPath = "/logout/";
+    options.AccessDeniedPath = "/khong-duoc-truy-cap.html";
+});
+
 builder.Services.AddAuthentication()
     .AddGoogle(options =>
     {
@@ -62,6 +69,7 @@ builder.Services.Configure<IdentityOptions>(options => {
     // Cấu hình đăng nhập.
     options.SignIn.RequireConfirmedEmail = true; // Cấu hình xác thực địa chỉ email (email phải tồn tại)
     options.SignIn.RequireConfirmedPhoneNumber = false; // Xác thực số điện thoại
+    options.SignIn.RequireConfirmedEmail = false; // Phải xác nhận email mới đăng nhập được
 
 });
 

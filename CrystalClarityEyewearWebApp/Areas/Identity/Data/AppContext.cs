@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using CrystalClarityEyewearWebApp.Models;
 
 namespace CrystalClarityEyewearWebApp.Areas.Identity.Data;
 
@@ -28,4 +29,8 @@ public class AppContext : IdentityDbContext<ApplicationUser>
             }
         }
     }
+
+    //public DbSet<CrystalClarityEyewearWebApp.Models.Product> Product { get; set; } = default!;
+    public DbSet<Product> Product { get; set; }
+    
 }
