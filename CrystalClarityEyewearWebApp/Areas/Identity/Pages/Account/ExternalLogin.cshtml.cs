@@ -146,12 +146,51 @@ namespace CrystalClarityEyewearWebApp.Areas.Identity.Pages.Account
             var info = await _signInManager.GetExternalLoginInfoAsync();
             if (info == null)
             {
-                ErrorMessage = "Error loading external login information during confirmation.";
+                //ErrorMessage = "Error loading external login information during confirmation.";
+                ErrorMessage = "Lỗi lấy thông tin từ dịch vụ ngoài";
                 return RedirectToPage("./Login", new { ReturnUrl = returnUrl });
             }
 
             if (ModelState.IsValid)
             {
+
+                //// Input.Email
+                //var registeredUser = _userManager.FindByEmailAsync(Input.Email);
+                //string externalEmail = null;
+                //ApplicationUser externalEmailUser = null;
+                //// claim -> dac tinh mo ta mot doi tuong
+                //if (info.Principal.HasClaim(c=> c.Type == ClaimTypes.Email))
+                //{
+                //    externalEmail = info.Principal.FindFirstValue(ClaimTypes.Email);
+                //}   
+                
+                //if (externalEmail != null)
+                //{
+                //    externalEmailUser = await _userManager.FindByEmailAsync(externalEmail);
+                //}
+
+                //if ((registeredUser != null) && (externalEmailUser != null))
+                //{
+                //    // externalEmail == Input.Email
+                //    if ((await registeredUser).Id == externalEmailUser.Id)
+                //    {
+                //        // lien ket tai khoan -> dang nhap
+                //        var resultLink = await _userManager.AddLoginAsync(await registeredUser, info);
+                //        if (resultLink.Succeeded)
+                //        {
+                //            await _signInManager.SignInAsync(await registeredUser, isPersistent: false);
+                //            return LocalRedirect(returnUrl);
+                //        }
+                //    }
+                //    else
+                //    {
+                //        ModelState.AddModelError(string.Empty, "Không liên kết được tài khoản, hãy sử dụng email khác");
+                //    }
+                //}
+
+                //return Content("stop here");
+
+
                 var user = CreateUser();
 
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
