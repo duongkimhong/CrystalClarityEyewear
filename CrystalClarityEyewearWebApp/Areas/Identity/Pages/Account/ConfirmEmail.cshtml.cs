@@ -19,9 +19,12 @@ namespace CrystalClarityEyewearWebApp.Areas.Identity.Pages.Account
     {
         private readonly UserManager<ApplicationUser> _userManager;
 
-        public ConfirmEmailModel(UserManager<ApplicationUser> userManager)
+        private readonly SignInManager<ApplicationUser> _signInManager;
+
+        public ConfirmEmailModel(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager)
         {
             _userManager = userManager;
+            _signInManager = signInManager;
         }
 
         /// <summary>
@@ -49,12 +52,12 @@ namespace CrystalClarityEyewearWebApp.Areas.Identity.Pages.Account
 
             if (result.Succeeded)
             {
-               //await _signInManager.SignInAsync(user, false);
+                await _signInManager.SignInAsync(user, false);
                 return RedirectToPage("/Index");
             }
             else
             {
-                return Content("Lỗi không xá thực Email");
+                return Content("Lỗi không xác thực Email");
             }
 
             //return Page();
