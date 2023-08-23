@@ -4,6 +4,7 @@ using CrystalClarityEyewearWebApp.Areas.Identity.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CrystalClarityEyewearWebApp.Migrations
 {
     [DbContext(typeof(Areas.Identity.Data.AppContext))]
-    partial class AppContextModelSnapshot : ModelSnapshot
+    [Migration("20230823131846_updateUserBirthDate")]
+    partial class updateUserBirthDate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -34,7 +37,7 @@ namespace CrystalClarityEyewearWebApp.Migrations
                         .HasMaxLength(400)
                         .HasColumnType("nvarchar");
 
-                    b.Property<DateTime?>("BirthDate")
+                    b.Property<DateTime>("BirthDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("ConcurrencyStamp")

@@ -6,13 +6,15 @@ using System;
 using System.ComponentModel.DataAnnotations;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
-using CrystalClarityEyewearWebApp.Areas.Identity.Data;
+using CrystalClarityEyewearWebApp.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace CrystalClarityEyewearWebApp.Areas.Identity.Pages.Account.Manage
 {
+    [Authorize]
     public class IndexModel : PageModel
     {
         private readonly UserManager<ApplicationUser> _userManager;
@@ -56,9 +58,15 @@ namespace CrystalClarityEyewearWebApp.Areas.Identity.Pages.Account.Manage
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
-            [Phone]
+            [Phone(ErrorMessage ="{0} sai định dạng")]
             [Display(Name = "Phone number")]
             public string PhoneNumber { get; set; }
+
+            [StringLength(400)]
+            public string Address { get; set; }
+
+            [Display(Name = "D.O.B")]
+            public DateTime? BirthDate { get; set; }
         }
 
         private async Task LoadAsync(ApplicationUser user)
@@ -70,7 +78,9 @@ namespace CrystalClarityEyewearWebApp.Areas.Identity.Pages.Account.Manage
 
             Input = new InputModel
             {
-                PhoneNumber = phoneNumber
+                PhoneNumber = phoneNumber,
+                Address = user.Address,
+                BirthDate = user.BirthDate
             };
         }
 
@@ -100,16 +110,22 @@ namespace CrystalClarityEyewearWebApp.Areas.Identity.Pages.Account.Manage
                 return Page();
             }
 
-            var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
-            if (Input.PhoneNumber != phoneNumber)
-            {
-                var setPhoneResult = await _userManager.SetPhoneNumberAsync(user, Input.PhoneNumber);
-                if (!setPhoneResult.Succeeded)
-                {
-                    StatusMessage = "Unexpected error when trying to set phone number.";
-                    return RedirectToPage();
-                }
-            }
+            //var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
+            //if (Input.PhoneNumber != phoneNumber)
+            //{
+            //    var setPhoneResult = await _userManager.SetPhoneNumberAsync(user, Input.PhoneNumber);
+            //    if (!setPhoneResult.Succeeded)
+            //    {
+            //        StatusMessage = "Unexpected error when trying to set phone number.";
+            //        return RedirectToPage();
+            //    }
+            //}
+
+            user.Address = Input.Address;
+            user.PhoneNumber = Input.PhoneNumber;
+            user.BirthDate = Input.BirthDate;
+
+            await _userManager.UpdateAsync(user);
 
             await _signInManager.RefreshSignInAsync(user);
             StatusMessage = "Your profile has been updated";

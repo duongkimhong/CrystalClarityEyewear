@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using CrystalClarityEyewearWebApp.Areas.Identity.Data;
 using System.Configuration;
 using CrystalClarityEyewearWebApp.Services;
 using Microsoft.AspNetCore.Identity.UI.Services;
+using CrystalClarityEyewearWebApp.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("AppContextConnection") ?? throw new InvalidOperationException("Connection string 'AppContextConnection' not found.");

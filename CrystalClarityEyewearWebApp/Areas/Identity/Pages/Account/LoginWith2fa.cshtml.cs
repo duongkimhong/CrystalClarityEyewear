@@ -9,9 +9,9 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
-using CrystalClarityEyewearWebApp.Areas.Identity.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
+using CrystalClarityEyewearWebApp.Models;
 
 namespace CrystalClarityEyewearWebApp.Areas.Identity.Pages.Account
 {
