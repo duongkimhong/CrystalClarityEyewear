@@ -43,6 +43,14 @@ builder.Services.AddAuthentication()
         options.ClientSecret = ggconfig["ClientSecret"];
         //https://localhost:7117/dang-nhap-tu-google
         options.CallbackPath = "/dang-nhap-tu-google";
+    })
+    .AddFacebook(options =>
+    {
+        var fconfig = builder.Configuration.GetSection("Authentication:Facebook");
+        options.ClientId = fconfig["AppId"];
+        options.ClientSecret = fconfig["AppSecret"];
+        //https://localhost:7117/dang-nhap-tu-facebook
+        options.CallbackPath = "/dang-nhap-tu-facebook";
     });
 
 builder.Services.AddRazorPages();

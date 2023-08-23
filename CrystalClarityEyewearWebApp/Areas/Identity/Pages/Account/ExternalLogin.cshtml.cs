@@ -155,41 +155,70 @@ namespace CrystalClarityEyewearWebApp.Areas.Identity.Pages.Account
             {
 
                 //// Input.Email
-                //var registeredUser = _userManager.FindByEmailAsync(Input.Email);
-                //string externalEmail = null;
-                //ApplicationUser externalEmailUser = null;
-                //// claim -> dac tinh mo ta mot doi tuong
-                //if (info.Principal.HasClaim(c=> c.Type == ClaimTypes.Email))
-                //{
-                //    externalEmail = info.Principal.FindFirstValue(ClaimTypes.Email);
-                //}   
-                
-                //if (externalEmail != null)
-                //{
-                //    externalEmailUser = await _userManager.FindByEmailAsync(externalEmail);
-                //}
+                var registeredUser = await _userManager.FindByEmailAsync(Input.Email);
+                string externalEmail = null;
+                ApplicationUser externalEmailUser = null;
+                // claim -> dac tinh mo ta mot doi tuong
+                if (info.Principal.HasClaim(c => c.Type == ClaimTypes.Email))
+                {
+                    externalEmail = info.Principal.FindFirstValue(ClaimTypes.Email);
+                }
 
-                //if ((registeredUser != null) && (externalEmailUser != null))
-                //{
-                //    // externalEmail == Input.Email
-                //    if ((await registeredUser).Id == externalEmailUser.Id)
-                //    {
-                //        // lien ket tai khoan -> dang nhap
-                //        var resultLink = await _userManager.AddLoginAsync(await registeredUser, info);
-                //        if (resultLink.Succeeded)
-                //        {
-                //            await _signInManager.SignInAsync(await registeredUser, isPersistent: false);
-                //            return LocalRedirect(returnUrl);
-                //        }
-                //    }
-                //    else
-                //    {
-                //        ModelState.AddModelError(string.Empty, "Không liên kết được tài khoản, hãy sử dụng email khác");
-                //    }
-                //}
+                if (externalEmail != null)
+                {
+                    externalEmailUser = await _userManager.FindByEmailAsync(externalEmail);
+                }
 
-                //return Content("stop here");
+                if ((registeredUser != null) && (externalEmailUser != null))
+                {
+                    // externalEmail == Input.Email
+                    if (registeredUser.Id == externalEmailUser.Id)
+                    {
+                        // lien ket tai khoan -> dang nhap
+                        var resultLink = await _userManager.AddLoginAsync(registeredUser, info);
+                        if (resultLink.Succeeded)
+                        {
+                            await _signInManager.SignInAsync(registeredUser, isPersistent: false);
+                            return LocalRedirect(returnUrl);
+                        }
+                    }
+                    else
+                    {
+                        ModelState.AddModelError(string.Empty, "Không liên kết được tài khoản, hãy sử dụng email khác");
+                        return Page();
+                    }
+                }
 
+                if ((externalEmailUser != null) && (registeredUser == null))
+                {
+                    ModelState.AddModelError(string.Empty, "Không hỗ trợ tạo tài khoản mới có email khác với email từ dịch vụ ngoài");
+                    return Page();
+                }
+
+                if ((externalEmailUser == null) && (externalEmail == Input.Email))
+                {
+                    // chưa có account -> tạo account -> liên kết -> đăng nhập
+                    var newUser = new ApplicationUser()
+                    {
+                        UserName = externalEmail,
+                        Email = externalEmail
+                    };
+
+                    var resultNewUser = await _userManager.CreateAsync(newUser);
+                    if (resultNewUser.Succeeded)
+                    {
+                        await _userManager.AddLoginAsync(newUser, info);
+                        var code = await _userManager.GenerateEmailConfirmationTokenAsync(newUser);
+                        await _userManager.ConfirmEmailAsync(newUser, code);
+                        await _signInManager.SignInAsync(newUser, isPersistent: false);
+                        return LocalRedirect(returnUrl);
+                    }
+                    else
+                    {
+                        ModelState.AddModelError(string.Empty, "Không tạo được tài khoản mới");
+                        return Page();
+                    }
+                }
 
                 var user = CreateUser();
 
