@@ -1,0 +1,34 @@
+﻿@* @model IEnumerable<CrystalClarityEyewearWebApp.Models.ApplicationUser> *@
+@model List<CrystalClarityEyewearWebApp.ViewModels.AccountViewModel>
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>UserName</th>
+            <th>Email</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td>@user.Id</td>
+                <td>@user.Username</td>
+                <td>@user.Email</td>
+                @if (user.IsLockedOut==false)
+                {
+                    <td><label class="badge badge-success">Active</label></td>
+                }
+                else
+                {
+                    <td><label class="badge badge-danger">Blocked</label></td>
+                }
+            </tr>
+        }
+       
+    </tbody>
+</table>

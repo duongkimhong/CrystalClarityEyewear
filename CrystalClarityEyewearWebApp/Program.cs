@@ -4,15 +4,18 @@ using System.Configuration;
 using CrystalClarityEyewearWebApp.Services;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using CrystalClarityEyewearWebApp.Models;
+using AspNetCoreHero.ToastNotification;
+using System.Text.Encodings.Web;
+using System.Text.Unicode;
 
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("AppContextConnection") ?? throw new InvalidOperationException("Connection string 'AppContextConnection' not found.");
 
-builder.Services.AddDbContext<CrystalClarityEyewearWebApp.Areas.Identity.Data.AppContext>(options => options.UseSqlServer(connectionString));
+builder.Services.AddDbContext<CrystalClarityEyewearWebApp.Models.AppContext>(options => options.UseSqlServer(connectionString));
 
 //builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<CrystalClarityEyewearWebApp.Areas.Identity.Data.AppContext>();
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
-    .AddEntityFrameworkStores<CrystalClarityEyewearWebApp.Areas.Identity.Data.AppContext>()
+    .AddEntityFrameworkStores<CrystalClarityEyewearWebApp.Models.AppContext>()
     .AddDefaultTokenProviders();
 
 //builder.Services.AddDefaultIdentity<ApplicationUser>()
@@ -20,7 +23,9 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
 //    .AddDefaultTokenProviders();
 
 // Add services to the container.
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
+builder.Services.AddNotyf(config => { config.DurationInSeconds = 10; config.IsDismissable = true; config.Position = NotyfPosition.BottomRight; });
+builder.Services.AddSingleton<HtmlEncoder>(HtmlEncoder.Create(allowedRanges: new[] {UnicodeRanges.All}));
 
 builder.Services.AddOptions();                                        // Kích hoạt Options
 var mailsettings = builder.Configuration.GetSection("MailSettings");  // đọc config
@@ -34,6 +39,8 @@ builder.Services.ConfigureApplicationCookie(options =>
     options.LogoutPath = "/logout/";
     options.AccessDeniedPath = "/khong-duoc-truy-cap.html";
 });
+
+builder.Services.AddSingleton<IdentityErrorDescriber, AppIdentityErrorDescriber>();
 
 builder.Services.AddAuthentication()
     .AddGoogle(options =>
@@ -98,6 +105,10 @@ app.UseStaticFiles();
 app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
+
+app.MapControllerRoute(
+    name: "area",
+        pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
 
 app.MapControllerRoute(
     name: "default",

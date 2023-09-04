@@ -1,55 +1,213 @@
-﻿<!DOCTYPE html>
-<html lang="en">
+﻿<!doctype html>
+<html class="no-js" lang="en">
+
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - CrystalClarityEyewearWebApp</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/CrystalClarityEyewearWebApp.styles.css" asp-append-version="true" />
+    <meta charset="utf-8">
+
+    <!--====== Title ======-->
+    <title>Zyra – Clean, Minimal HTML Template</title>
+
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--====== Favicon Icon ======-->
+    <link rel="shortcut icon" href="~/assets/images/favicon.png" type="image/png">
+
+
+    <!-- CSS
+    ============================================ -->
+    <!--===== Vendor CSS (Bootstrap & Icon Font) =====-->
+    <!-- <link rel="stylesheet" href="~/assets/css/plugins/bootstrap.min.css">
+    <link rel="stylesheet" href="~/assets/css/plugins/fontawesome.min.css">
+    <link rel="stylesheet" href="~/assets/css/plugins/default.css"> -->
+    <!--===== Plugins CSS (All Plugins Files) =====-->
+    <!-- <link rel="stylesheet" href="~/assets/css/plugins/animate.css">
+    <link rel="stylesheet" href="~/assets/css/plugins/slick.css">
+    <link rel="stylesheet" href="~/assets/css/plugins/component.css">
+    <link rel="stylesheet" href="~/assets/css/plugins/magnific-popup.css">
+    <link rel="stylesheet" href="~/assets/css/plugins/jquery-ui.min.css">
+    <link rel="stylesheet" href="~/assets/css/plugins/select2.min.css">
+    <link rel="stylesheet" href="~/assets/css/plugins/photoswipe.css">
+    <link rel="stylesheet" href="~/assets/css/plugins/photoswipe-default-skin.css"> -->
+    <!--====== Main Style CSS ======-->
+    <!-- <link rel="stylesheet" href="~/assets/css/style.css"> -->
+    <!--====== Use the minified version files listed below for better performance and remove the files listed above ======-->
+
+    <link rel="stylesheet" href="~/assets/css/vendor/plugins.min.css">
+    <link rel="stylesheet" href="~/assets/css/style.min.css">
+
 </head>
+
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">CrystalClarityEyewear.com</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Products" asp-action="Index">Product</a>
-                        </li>
-                    </ul>
-                    <ul class="navbar-nav flex-grow-2 mr-2">
-                        <partial name="_LoginPartial" />
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
+
+
+    <!--====== preloader Start ======-->
+
+    <div class="preloader">
+        <div class="spinner">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
+        </div>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2023 - CrystalClarityEyewearWebApp - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+    <!--====== preloader Ends ======-->
+    <!--====== Header Start ======-->
+
+    @Html.Partial("_Header")
+
+    <!--====== Header Ends ======-->
+
+    @RenderBody()
+
+    <!--====== Footer Start ======-->
+
+   @await Html.PartialAsync("_Footer.cshtml")
+
+    <!--====== Footer Ends ======-->
+
+    <!--====== BACK TOP TOP PART START ======-->
+
+    <a href="#" class="back-to-top"><i class="fal fa-chevron-up"></i></a>
+
+    <!--====== BACK TOP TOP PART ENDS ======-->
+
+    <!--====== Product Quick View Start ======-->
+
+    <div class="modal fade" id="productQuick">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="product-quick-view">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="quick-view-image">
+                                <div class="quick-view-thumb">
+                                    <div class="quick-thumb-active">
+                                        <div class="single-quick-thumb">
+                                            <img src="~/assets/images/product/product-37.jpg" alt="">
+                                        </div>
+                                        <div class="single-quick-thumb">
+                                            <img src="~/assets/images/product/product-38.jpg" alt="">
+                                        </div>
+                                        <div class="single-quick-thumb">
+                                            <img src="~/assets/images/product/product-27.jpg" alt="">
+                                        </div>
+                                        <div class="single-quick-thumb">
+                                            <img src="~/assets/images/product/product-28.jpg" alt="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="quick-view-preview">
+                                    <div class="quick-preview-active">
+                                        <div class="single-quick-preview">
+                                            <img src="~/assets/images/product/product-37.jpg" alt="">
+                                        </div>
+                                        <div class="single-quick-preview">
+                                            <img src="~/assets/images/product/product-38.jpg" alt="">
+                                        </div>
+                                        <div class="single-quick-preview">
+                                            <img src="~/assets/images/product/product-27.jpg" alt="">
+                                        </div>
+                                        <div class="single-quick-preview">
+                                            <img src="~/assets/images/product/product-28.jpg" alt="">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="quick-view-content">
+                                <h4 class="title">Oversized Check Dress</h4>
+                                <span class="sku-id">REF. 1104693 - TOMY</span>
+
+                                <div class="quick-price">
+                                    <span class="regular-price">£250.00</span>
+                                    <span class="sale-price">£200.00</span>
+                                </div>
+                                <div class="quick-quantity-cart-wishlist-compare flex-wrap">
+                                    <form action="#">
+                                        <div class="quick-quantity d-flex">
+                                            <button type="button" class="sub"><i class="fal fa-minus"></i></button>
+                                            <input type="text" value="1" />
+                                            <button type="button" class="add"><i class="fal fa-plus"></i></button>
+                                        </div>
+                                        <div class="quick-cart">
+                                            <button class="main-btn">Add to Cart</button>
+                                        </div>
+                                    </form>
+                                    <a href="#" data-bs-tooltip="tooltip" data-bs-placement="top" title="Add to Wishlist" class="quick-wishlist"><i class="fal fa-heart"></i></a>
+                                    <a href="#" data-bs-tooltip="tooltip" data-bs-placement="top" title="Add to Compare" class="quick-compare"><i class="fal fa-repeat-alt"></i></a>
+                                </div>
+                                <div class="quick-description">
+                                    <p>Sed vitae eros a quam malesuada porttitor nec nec orci. Ut lacus augue, bibendum at tristique at, ornare eget quam. Donec volutpat ut nibh id sagittis. Morbi fringilla ac libero in consequat.</p>
+                                </div>
+                                <div class="quick-share">
+                                    <ul class="social">
+                                        <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                                        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                                        <li><a href="#"><i class="fab fa-linkedin"></i></a></li>
+                                        <li><a href="#"><i class="fab fa-pinterest-p"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+    </div>
+
+    <!--====== Product Quick View Ends ======-->
+
+    <!--====== Overlay Start ======-->
+
+    <div class="overlay"></div>
+
+    <!--====== Overlay Ends ======-->
+
+    <!--====== Jquery js ======-->
+    <script src="~/assets/js/vendor/jquery-3.5.1.min.js"></script>
+    <script src="~/assets/js/vendor/modernizr-3.7.1.min.js"></script>
+
+    <!--====== All Plugins js ======-->
+    <!-- <script src="~/assets/js/plugins/jquery-ui.min.js"></script>
+    <script src="~/assets/js/plugins/popper.min.js"></script>
+    <script src="~/assets/js/plugins/bootstrap.min.js"></script>
+    <script src="~/assets/js/plugins/slick.min.js"></script>
+    <script src="~/assets/js/plugins/modernizr.custom.js"></script>
+    <script src="~/assets/js/plugins/jquery.dlmenu.js"></script>
+    <script src="~/assets/js/plugins/jquery.paroller.min.js"></script>
+    <script src="~/assets/js/plugins/jquery.magnific-popup.min.js"></script>
+    <script src="~/assets/js/plugins/jquery.countdown.min.js"></script>
+    <script src="~/assets/js/plugins/select2.min.js"></script>
+    <script src="~/assets/js/plugins/photoswipe.min.js"></script>
+    <script src="~/assets/js/plugins/photoswipe-ui-default.min.js"></script>
+    <script src="~/assets/js/plugins/jquery.elevateZoom.min.js"></script>
+    <script src="~/assets/js/plugins/masonry.pkgd.min.js"></script>
+    <script src="~/assets/js/plugins/jquery.appear.min.js"></script>
+    <script src="~/assets/js/plugins/jquery.sticky-sidebar.min.js"></script>
+    <script src="~/assets/js/plugins/imagesloaded.pkgd.min.js"></script>
+    <script src="~/assets/js/plugins/ajax-contact.js"></script> -->
+
+    <script src="~/assets/js/plugins/parallax.min.js"></script>
+
+    <!--====== Use the minified version files listed below for better performance and remove the files listed above ======-->
+
+    <script src="~/assets/js/plugins.min.js"></script>
+
+
+    <!--====== Main Activation  js ======-->
+    <script src="~/assets/js/main.js"></script>
+
+
+
+    <!--=================================-->
+    @await Component.InvokeAsync("Notyf")
     @await RenderSectionAsync("Scripts", required: false)
 </body>
+
 </html>

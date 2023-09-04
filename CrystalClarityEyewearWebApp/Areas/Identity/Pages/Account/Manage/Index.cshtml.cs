@@ -79,7 +79,7 @@ namespace CrystalClarityEyewearWebApp.Areas.Identity.Pages.Account.Manage
             Input = new InputModel
             {
                 PhoneNumber = phoneNumber,
-                Address = user.Address,
+                //Address = user.Address,
                 BirthDate = user.BirthDate
             };
         }
@@ -121,7 +121,7 @@ namespace CrystalClarityEyewearWebApp.Areas.Identity.Pages.Account.Manage
             //    }
             //}
 
-            user.Address = Input.Address;
+            //user.Address = Input.Address;
             user.PhoneNumber = Input.PhoneNumber;
             user.BirthDate = Input.BirthDate;
 
