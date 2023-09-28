@@ -3,38 +3,34 @@ using System.ComponentModel.DataAnnotations;
 
 namespace CrystalClarityEyewearWebApp.Models
 {
-    public class Post
+    public class Post : CommonAbstract
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        public string? Title { get; set; }
+        [Required]
+        [StringLength(200)]
+        public string Title { get; set; }
 
-        public string? ShortContent { get; set; }
+        public string Description { get; set; }
 
-        public string? Content { get; set; }
+        public string Detail { get; set; }
 
-        public string? Image { get; set; }
+        public string Image { get; set; }
 
-        public bool? IsPublish { get; set; }
+        public string Alias { get; set; }
 
-        public DateTime? CreateDate { get; set; }
+        public int CategoryId { get; set; }
 
-        public int UserId { get; set; }
+        public string SeoTitle { get; set; }
 
-        public string? Tags { get; set; }
+        public string SeoDescription { get; set; }
 
-        public int? CatPostId { get; set; }
+        public string SeoKeywords { get; set; }
 
-        public bool? IsHot { get; set; }
+        public bool IsActive { get; set; }
 
-        public bool? IsNewfeed { get; set; }
-
-        public int? Views { get; set; }
-
-        public virtual ApplicationUser? User { get; set; }
-
-        public virtual PostCategory? CatPost { get; set; }
+        public virtual Category Category { get; set; }
     }
 }

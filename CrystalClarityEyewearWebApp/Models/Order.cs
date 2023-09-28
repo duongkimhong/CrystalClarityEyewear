@@ -4,38 +4,32 @@ using System.ComponentModel;
 
 namespace CrystalClarityEyewearWebApp.Models
 {
-    public class Order
+    public class Order : CommonAbstract
     {
+        public Order() 
+        { 
+            this.OrderDetail = new HashSet<OrderDetail>();
+        }
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
+        
+        public string Code { get; set; }
+        
+        [Required]
+        public string CustomerName { get; set; }
 
-        public int? CustomerId { get; set; }
+        [Required]
+        public string Phone { get; set; }
 
-        [DisplayName("Ngày đặt")]
-        public DateTime? OrderDate { get; set; }
+        [Required]
+        public string Address { get; set; }
 
-        [DisplayName("Trạng thái")]
-        public string? Status { get; set; }
+        public decimal TotalAmount { get; set; }
 
-        public bool? IsDeleted { get; set; }
+        public int Quantity { get; set; }
 
-        public decimal? Discount { get; set; }
-
-        public bool? Paid { get; set; }
-
-        public int? PaymentId { get; set; }
-
-        [DisplayName("Ghi chú")]
-        public string? Note { get; set; }
-
-        public int? StaffId { get; set; }
-
-        public virtual ICollection<ApplicationUser> User { get; set; }
-
-        public virtual ICollection<OrderDetail> OrderDetails { get; set; } = new List<OrderDetail>();
-
-        public virtual PaymentMethod? Payment { get; set; }
+        public virtual ICollection<OrderDetail> OrderDetail { get; set; }
 
     }
 }

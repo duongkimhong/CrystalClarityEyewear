@@ -2,52 +2,61 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Runtime.CompilerServices;
 
 namespace CrystalClarityEyewearWebApp.Models
 {
-    public partial class Product
+    public partial class Product : CommonAbstract
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         [Required]
-        public string? Name { get; set; }
+        public string Name { get; set; }
+
+        public string ProductCode { get; set; }
 
         public string? ShortDesc { get; set; }
 
         public string? Description { get; set; }
 
-        public int CatId { get; set; }
-
-        public decimal? Price { get; set; }
-
-        public int? UnitInStock { get; set; }
-
-        public double? SaleDiscount { get; set; }
-
         public string? Image { get; set; }
 
-        public string? Video { get; set; }
+        public string Alias { get; set; }
 
-        public DateTime? CreateDate { get; set; }
+        public decimal Price { get; set; }
 
-        public DateTime? ModifiedDate { get; set; }
+        public decimal PriceSale { get; set; }
 
-        public bool? IsBestSeller { get; set; }
+        public bool IsHome { get; set; }
 
-        public bool? IsHomeFlag { get; set; }
+        public bool IsSale { get; set; }
 
-        public bool? IsPublish { get; set; }
+        public bool IsFeatture { get; set; }
 
-        public string? Tags { get; set; }
+        public bool IsHot { get; set; }
 
-        [ForeignKey("CatId")]
-        public Category Category { get; set; }
+        public int CatId { get; set; }
 
-        public virtual ICollection<FeedBack> FeedBacks { get; set; } = new List<FeedBack>();
+        public string SeoTitle { get; set; }
 
-        public virtual ICollection<OrderDetail> OrderDetails { get; set; } = new List<OrderDetail>();
+        public string SeoDescription { get; set; }
+
+        public string SeoKeywords { get; set; }
+
+        public int Quantity { get; set; }
+
+        public bool IsBestSeller { get; set; }
+
+        public bool IsPublish { get; set; }
+
+
+
+        public virtual ProductCategory ProductCategory { get; set; }
+
+
+        
     }
 }
 

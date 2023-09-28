@@ -568,3 +568,10 @@ D:\ASP.NET CORE MVC\CrystalClarityEyewearWebApp\CrystalClarityEyewearWebApp\obj\
 D:\ASP.NET CORE MVC\CrystalClarityEyewearWebApp\CrystalClarityEyewearWebApp\obj\Debug\net7.0\CrystalClarityEyewearWebApp.pdb
 D:\ASP.NET CORE MVC\CrystalClarityEyewearWebApp\CrystalClarityEyewearWebApp\obj\Debug\net7.0\CrystalClarityEyewearWebApp.genruntimeconfig.cache
 D:\ASP.NET CORE MVC\CrystalClarityEyewearWebApp\CrystalClarityEyewearWebApp\obj\Debug\net7.0\ref\CrystalClarityEyewearWebApp.dll
+D:\ASP.NET CORE MVC\CrystalClarityEyewearWebApp\CrystalClarityEyewearWebApp\bin\Debug\net7.0\System.Web.Mvc.dll
+D:\ASP.NET CORE MVC\CrystalClarityEyewearWebApp\CrystalClarityEyewearWebApp\bin\Debug\net7.0\System.Web.Razor.dll
+D:\ASP.NET CORE MVC\CrystalClarityEyewearWebApp\CrystalClarityEyewearWebApp\bin\Debug\net7.0\System.Web.Helpers.dll
+D:\ASP.NET CORE MVC\CrystalClarityEyewearWebApp\CrystalClarityEyewearWebApp\bin\Debug\net7.0\System.Web.WebPages.Deployment.dll
+D:\ASP.NET CORE MVC\CrystalClarityEyewearWebApp\CrystalClarityEyewearWebApp\bin\Debug\net7.0\System.Web.WebPages.Razor.dll
+D:\ASP.NET CORE MVC\CrystalClarityEyewearWebApp\CrystalClarityEyewearWebApp\bin\Debug\net7.0\System.Web.WebPages.dll
+D:\ASP.NET CORE MVC\CrystalClarityEyewearWebApp\CrystalClarityEyewearWebApp\bin\Debug\net7.0\Microsoft.Web.Infrastructure.dll

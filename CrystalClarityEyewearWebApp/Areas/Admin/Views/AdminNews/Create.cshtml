@@ -1,0 +1,143 @@
+﻿@model CrystalClarityEyewearWebApp.Models.News
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Create</h1>
+
+<h4>News</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create" enctype="multipart/form-data">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Detail" class="control-label"></label>
+                <textarea asp-for="Detail" class="form-control" id="txtDetail"></textarea>
+                <span asp-validation-for="Detail" class="text-danger"></span>
+            </div>
+
+            @* <div class="form-group">
+                <label asp-for="Image" class="control-label"></label>
+                <div class="input-group">
+                    <input asp-for="Image" type="file" class="form-control" id="fileInput" style="display: none;" />
+                    <input type="text" class="form-control" readonly id="fileName" />
+                    <div class="input-group-append">
+                        <button type="button" class="btn btn-outline-secondary" onclick="document.getElementById('fileInput').click();">Chọn tệp</button>
+                    </div>
+                </div>
+                <span asp-validation-for="Image" class="text-danger"></span>
+            </div> *@
+
+            <div class="form-group">
+                <label asp-for="CoverImage" class="control-label"></label>
+                <div class="input-group">
+                    <input asp-for="CoverImage" type="file" class="form-control" id="fileInput" style="display: none;" />
+                    <input type="text" class="form-control" readonly id="fileName" />
+                    <div class="input-group-append">
+                        <button type="button" class="btn btn-outline-secondary" onclick="document.getElementById('fileInput').click();">Chọn tệp</button>
+                    </div>
+                </div>
+                <span asp-validation-for="CoverImage" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Alias" class="control-label"></label>
+                <input asp-for="Alias" class="form-control" />
+                <span asp-validation-for="Alias" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CategoryId" class="control-label"></label>
+                <select asp-for="CategoryId" class ="form-control" asp-items="ViewBag.CategoryId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="SeoTitle" class="control-label"></label>
+                <input asp-for="SeoTitle" class="form-control" />
+                <span asp-validation-for="SeoTitle" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SeoDescription" class="control-label"></label>
+                <input asp-for="SeoDescription" class="form-control" />
+                <span asp-validation-for="SeoDescription" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SeoKeywords" class="control-label"></label>
+                <input asp-for="SeoKeywords" class="form-control" />
+                <span asp-validation-for="SeoKeywords" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CreatedBy" class="control-label"></label>
+                <input asp-for="CreatedBy" class="form-control" />
+                <span asp-validation-for="CreatedBy" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CreateDate" class="control-label"></label>
+                <input asp-for="CreateDate" class="form-control" />
+                <span asp-validation-for="CreateDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ModifiedDate" class="control-label"></label>
+                <input asp-for="ModifiedDate" class="form-control" />
+                <span asp-validation-for="ModifiedDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ModifiedBy" class="control-label"></label>
+                <input asp-for="ModifiedBy" class="form-control" />
+                <span asp-validation-for="ModifiedBy" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+<script>
+    document.getElementById('fileInput').addEventListener('change', function () {
+        document.getElementById('fileName').value = this.files[0].name;
+    });
+</script>
+
+@* <script>
+    ClassicEditor
+        .create(document.querySelector('#editor'))
+        .catch(error => {
+            console.error(error);
+        });
+</script> *@
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            CKEDITOR.replace('txtDetail', {
+                customConfig: '~/ckeditor/config.js',
+                extraAllowedContent: 'span',
+            });
+        });
+
+        function BrowseServer(field){
+            var finder = new CKFinder();
+            finder.selectActionFunction = function (fileUrl) {
+                document.getElementById(field).value = fileUrl;
+            };
+            finder.popup();
+        }
+    </script>
+}
+

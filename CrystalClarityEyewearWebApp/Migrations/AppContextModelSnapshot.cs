@@ -22,6 +22,54 @@ namespace CrystalClarityEyewearWebApp.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("CrystalClarityEyewearWebApp.Models.Advertisement", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime?>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(4000)
+                        .HasColumnType("nvarchar(4000)");
+
+                    b.Property<string>("Image")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<string>("Link")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<int>("Type")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Advertisement");
+                });
+
             modelBuilder.Entity("CrystalClarityEyewearWebApp.Models.ApplicationUser", b =>
                 {
                     b.Property<string>("Id")
@@ -61,9 +109,6 @@ namespace CrystalClarityEyewearWebApp.Migrations
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
 
-                    b.Property<int?>("OrderId")
-                        .HasColumnType("int");
-
                     b.Property<string>("PasswordHash")
                         .HasColumnType("nvarchar(max)");
 
@@ -93,47 +138,107 @@ namespace CrystalClarityEyewearWebApp.Migrations
                         .HasDatabaseName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
-                    b.HasIndex("OrderId");
-
                     b.ToTable("Users", (string)null);
                 });
 
             modelBuilder.Entity("CrystalClarityEyewearWebApp.Models.Category", b =>
                 {
-                    b.Property<int>("CatId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CatId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Alias")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Image")
+                    b.Property<string>("Icon")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool?>("IsPublish")
+                    b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("Levels")
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Position")
                         .HasColumnType("int");
+
+                    b.Property<string>("SeoDescription")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SeoKeywords")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SeoTitle")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Categories");
+                });
+
+            modelBuilder.Entity("CrystalClarityEyewearWebApp.Models.Contact", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime?>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("IsRead")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Message")
+                        .IsRequired()
+                        .HasMaxLength(5000)
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("Ordering")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("ParentId")
+                    b.Property<string>("Website")
                         .IsRequired()
-                        .HasColumnType("int");
+                        .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("CatId");
+                    b.HasKey("Id");
 
-                    b.HasIndex("ParentId");
-
-                    b.ToTable("Category");
+                    b.ToTable("Contact");
                 });
 
             modelBuilder.Entity("CrystalClarityEyewearWebApp.Models.District", b =>
@@ -193,6 +298,67 @@ namespace CrystalClarityEyewearWebApp.Migrations
                     b.ToTable("FeedBack");
                 });
 
+            modelBuilder.Entity("CrystalClarityEyewearWebApp.Models.News", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Alias")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("CategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Detail")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Image")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("SeoDescription")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SeoKeywords")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SeoTitle")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CategoryId");
+
+                    b.ToTable("News");
+                });
+
             modelBuilder.Entity("CrystalClarityEyewearWebApp.Models.Order", b =>
                 {
                     b.Property<int>("Id")
@@ -201,36 +367,46 @@ namespace CrystalClarityEyewearWebApp.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("CustomerId")
-                        .HasColumnType("int");
-
-                    b.Property<decimal?>("Discount")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<bool?>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Note")
+                    b.Property<string>("Address")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("OrderDate")
+                    b.Property<string>("Code")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("CreateDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<bool?>("Paid")
-                        .HasColumnType("bit");
-
-                    b.Property<int?>("PaymentId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("StaffId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Status")
+                    b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CustomerName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("PaymentMethodId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Phone")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("TotalAmount")
+                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("PaymentId");
+                    b.HasIndex("PaymentMethodId");
 
                     b.ToTable("Order");
                 });
@@ -243,20 +419,17 @@ namespace CrystalClarityEyewearWebApp.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<double?>("Discount")
-                        .HasColumnType("float");
-
-                    b.Property<int?>("OrderId")
+                    b.Property<int>("OrderId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("ProductId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("Quantity")
-                        .HasColumnType("int");
-
-                    b.Property<decimal?>("Total")
+                    b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -288,6 +461,7 @@ namespace CrystalClarityEyewearWebApp.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("Ordering")
@@ -316,6 +490,7 @@ namespace CrystalClarityEyewearWebApp.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -331,69 +506,62 @@ namespace CrystalClarityEyewearWebApp.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("CatPostId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Content")
+                    b.Property<string>("Alias")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("CreateDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Image")
+                    b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool?>("IsHot")
-                        .HasColumnType("bit");
-
-                    b.Property<bool?>("IsNewfeed")
-                        .HasColumnType("bit");
-
-                    b.Property<bool?>("IsPublish")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("ShortContent")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Tags")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Title")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("UserId1")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int?>("Views")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CatPostId");
-
-                    b.HasIndex("UserId1");
-
-                    b.ToTable("Posts");
-                });
-
-            modelBuilder.Entity("CrystalClarityEyewearWebApp.Models.PostCategory", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Name")
+                    b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Detail")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Image")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("SeoDescription")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SeoKeywords")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SeoTitle")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
                     b.HasKey("Id");
 
-                    b.ToTable("PostCategories");
+                    b.HasIndex("CategoryId");
+
+                    b.ToTable("Posts");
                 });
 
             modelBuilder.Entity("CrystalClarityEyewearWebApp.Models.Product", b =>
@@ -404,11 +572,18 @@ namespace CrystalClarityEyewearWebApp.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("Alias")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("CatId")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("CreateDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
@@ -416,14 +591,26 @@ namespace CrystalClarityEyewearWebApp.Migrations
                     b.Property<string>("Image")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool?>("IsBestSeller")
+                    b.Property<bool>("IsBestSeller")
                         .HasColumnType("bit");
 
-                    b.Property<bool?>("IsHomeFlag")
+                    b.Property<bool>("IsFeatture")
                         .HasColumnType("bit");
 
-                    b.Property<bool?>("IsPublish")
+                    b.Property<bool>("IsHome")
                         .HasColumnType("bit");
+
+                    b.Property<bool>("IsHot")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsPublish")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsSale")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("ModifiedDate")
                         .HasColumnType("datetime2");
@@ -432,29 +619,113 @@ namespace CrystalClarityEyewearWebApp.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal?>("Price")
+                    b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<double?>("SaleDiscount")
-                        .HasColumnType("float");
+                    b.Property<decimal>("PriceSale")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("ProductCategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ProductCode")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.Property<string>("SeoDescription")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SeoKeywords")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SeoTitle")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ShortDesc")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Tags")
-                        .HasColumnType("nvarchar(max)");
+                    b.HasKey("Id");
 
-                    b.Property<int?>("UnitInStock")
+                    b.HasIndex("ProductCategoryId");
+
+                    b.ToTable("Products");
+                });
+
+            modelBuilder.Entity("CrystalClarityEyewearWebApp.Models.ProductCategory", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<string>("Video")
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Alias")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Icon")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("Position")
+                        .HasColumnType("int");
+
+                    b.Property<string>("SeoDescription")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SeoKeywords")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SeoTitle")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CatId");
+                    b.ToTable("ProductCategories");
+                });
 
-                    b.ToTable("Products");
+            modelBuilder.Entity("CrystalClarityEyewearWebApp.Models.ProductImage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Image")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDefault")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ProductImages");
                 });
 
             modelBuilder.Entity("CrystalClarityEyewearWebApp.Models.Province", b =>
@@ -472,6 +743,46 @@ namespace CrystalClarityEyewearWebApp.Migrations
                     b.HasKey("ProvinceId");
 
                     b.ToTable("Provinces");
+                });
+
+            modelBuilder.Entity("CrystalClarityEyewearWebApp.Models.Subcribe", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Subcribe");
+                });
+
+            modelBuilder.Entity("CrystalClarityEyewearWebApp.Models.SystemSetting", b =>
+                {
+                    b.Property<string>("SettingKey")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("SettingDescription")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SettingValue")
+                        .IsRequired()
+                        .HasMaxLength(4000)
+                        .HasColumnType("nvarchar(4000)");
+
+                    b.HasKey("SettingKey");
+
+                    b.ToTable("SystemSetting");
                 });
 
             modelBuilder.Entity("CrystalClarityEyewearWebApp.Models.UserAddress", b =>
@@ -674,24 +985,6 @@ namespace CrystalClarityEyewearWebApp.Migrations
                     b.ToTable("UserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("CrystalClarityEyewearWebApp.Models.ApplicationUser", b =>
-                {
-                    b.HasOne("CrystalClarityEyewearWebApp.Models.Order", null)
-                        .WithMany("User")
-                        .HasForeignKey("OrderId");
-                });
-
-            modelBuilder.Entity("CrystalClarityEyewearWebApp.Models.Category", b =>
-                {
-                    b.HasOne("CrystalClarityEyewearWebApp.Models.Category", "ParentCategory")
-                        .WithMany("Subcategories")
-                        .HasForeignKey("ParentId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("ParentCategory");
-                });
-
             modelBuilder.Entity("CrystalClarityEyewearWebApp.Models.District", b =>
                 {
                     b.HasOne("CrystalClarityEyewearWebApp.Models.Province", "Province")
@@ -706,7 +999,7 @@ namespace CrystalClarityEyewearWebApp.Migrations
             modelBuilder.Entity("CrystalClarityEyewearWebApp.Models.FeedBack", b =>
                 {
                     b.HasOne("CrystalClarityEyewearWebApp.Models.Product", "Product")
-                        .WithMany("FeedBacks")
+                        .WithMany()
                         .HasForeignKey("ProductId");
 
                     b.HasOne("CrystalClarityEyewearWebApp.Models.ApplicationUser", "User")
@@ -718,24 +1011,35 @@ namespace CrystalClarityEyewearWebApp.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("CrystalClarityEyewearWebApp.Models.News", b =>
+                {
+                    b.HasOne("CrystalClarityEyewearWebApp.Models.Category", "Category")
+                        .WithMany("News")
+                        .HasForeignKey("CategoryId");
+
+                    b.Navigation("Category");
+                });
+
             modelBuilder.Entity("CrystalClarityEyewearWebApp.Models.Order", b =>
                 {
-                    b.HasOne("CrystalClarityEyewearWebApp.Models.PaymentMethod", "Payment")
+                    b.HasOne("CrystalClarityEyewearWebApp.Models.PaymentMethod", null)
                         .WithMany("Orders")
-                        .HasForeignKey("PaymentId");
-
-                    b.Navigation("Payment");
+                        .HasForeignKey("PaymentMethodId");
                 });
 
             modelBuilder.Entity("CrystalClarityEyewearWebApp.Models.OrderDetail", b =>
                 {
                     b.HasOne("CrystalClarityEyewearWebApp.Models.Order", "Order")
-                        .WithMany("OrderDetails")
-                        .HasForeignKey("OrderId");
+                        .WithMany("OrderDetail")
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("CrystalClarityEyewearWebApp.Models.Product", "Product")
-                        .WithMany("OrderDetails")
-                        .HasForeignKey("ProductId");
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Order");
 
@@ -744,28 +1048,24 @@ namespace CrystalClarityEyewearWebApp.Migrations
 
             modelBuilder.Entity("CrystalClarityEyewearWebApp.Models.Post", b =>
                 {
-                    b.HasOne("CrystalClarityEyewearWebApp.Models.PostCategory", "CatPost")
-                        .WithMany("Posts")
-                        .HasForeignKey("CatPostId");
-
-                    b.HasOne("CrystalClarityEyewearWebApp.Models.ApplicationUser", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId1");
-
-                    b.Navigation("CatPost");
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("CrystalClarityEyewearWebApp.Models.Product", b =>
-                {
                     b.HasOne("CrystalClarityEyewearWebApp.Models.Category", "Category")
-                        .WithMany("Products")
-                        .HasForeignKey("CatId")
+                        .WithMany("Post")
+                        .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Category");
+                });
+
+            modelBuilder.Entity("CrystalClarityEyewearWebApp.Models.Product", b =>
+                {
+                    b.HasOne("CrystalClarityEyewearWebApp.Models.ProductCategory", "ProductCategory")
+                        .WithMany("Products")
+                        .HasForeignKey("ProductCategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ProductCategory");
                 });
 
             modelBuilder.Entity("CrystalClarityEyewearWebApp.Models.UserAddress", b =>
@@ -872,9 +1172,9 @@ namespace CrystalClarityEyewearWebApp.Migrations
 
             modelBuilder.Entity("CrystalClarityEyewearWebApp.Models.Category", b =>
                 {
-                    b.Navigation("Products");
+                    b.Navigation("News");
 
-                    b.Navigation("Subcategories");
+                    b.Navigation("Post");
                 });
 
             modelBuilder.Entity("CrystalClarityEyewearWebApp.Models.District", b =>
@@ -884,9 +1184,7 @@ namespace CrystalClarityEyewearWebApp.Migrations
 
             modelBuilder.Entity("CrystalClarityEyewearWebApp.Models.Order", b =>
                 {
-                    b.Navigation("OrderDetails");
-
-                    b.Navigation("User");
+                    b.Navigation("OrderDetail");
                 });
 
             modelBuilder.Entity("CrystalClarityEyewearWebApp.Models.PaymentMethod", b =>
@@ -894,16 +1192,9 @@ namespace CrystalClarityEyewearWebApp.Migrations
                     b.Navigation("Orders");
                 });
 
-            modelBuilder.Entity("CrystalClarityEyewearWebApp.Models.PostCategory", b =>
+            modelBuilder.Entity("CrystalClarityEyewearWebApp.Models.ProductCategory", b =>
                 {
-                    b.Navigation("Posts");
-                });
-
-            modelBuilder.Entity("CrystalClarityEyewearWebApp.Models.Product", b =>
-                {
-                    b.Navigation("FeedBacks");
-
-                    b.Navigation("OrderDetails");
+                    b.Navigation("Products");
                 });
 
             modelBuilder.Entity("CrystalClarityEyewearWebApp.Models.Province", b =>

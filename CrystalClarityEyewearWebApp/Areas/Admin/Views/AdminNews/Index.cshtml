@@ -1,0 +1,100 @@
+﻿@model IEnumerable<CrystalClarityEyewearWebApp.Models.News>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Image)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            
+            <th>
+                @Html.DisplayNameFor(model => model.CreateDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ModifiedDate)
+            </th>
+            <th>
+                Hiển thị
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+            var strCheck = item.IsActive ? "<a href='#'><i class='fa fa-check text-success'></i></a>" : "<a href='#'><i class='fas fa-times text-danger'></i></a>";
+            <tr class="trow_@item.Id">
+            <td>
+                <img src="@item.Image" width="50" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreateDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ModifiedDate)
+            </td>
+            <td class="text-center">
+                @Html.Raw(strCheck)
+            </td>
+            <td>
+                <button class="btn btn-outline-success disabled mr-2" type="button"><a asp-action="Edit" asp-route-id="@item.Id">Edit</a></button>
+                <button class="btn btn-outline-danger disabled mr-2 btnDelete" type="button"><a asp-action="Delete" asp-route-id="@item.Id">Delete</a></button>
+                    @* <button data-id="@item.Id" class="btn btn-outline-danger btnDelete">Delete</button> *@
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+<section scripts>
+    <script>
+        // $(document).ready(function () {
+        //     $('.btnDelete').click(function () {
+        //         var id = $(this).data("id");
+        //         var conf = confirm("Bạn có muốn xóa bản ghi này không?");
+        //         if (conf === true) {
+        //             $.ajax({
+        //                 url: '/admin/news/delete',
+        //                 type: 'POST',
+        //                 data: { id: id },
+        //                 success: function (rs) {
+        //                     if (rs.success) {
+        //                         $(this).closest('tr').remove();
+        //                     }
+        //                 }.bind(this) // Bind this to the success callback function
+        //             });
+        //         }
+        //     });
+        // });
+
+            $('body').on('click', '.btnActive', function () {
+                var id = $(this).data("id");
+                $.ajax({
+                    url: '/admin/news/IsActive',
+                    type: 'POST',
+                    data: {id: id},
+                    success: function(rs){
+                        if (rs.success) {
+                            $(this).html("");
+                        }
+                    }
+                })
+            })
+        })
+    </script>
+</section>

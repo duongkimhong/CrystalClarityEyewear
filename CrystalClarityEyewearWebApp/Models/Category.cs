@@ -1,38 +1,42 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using Microsoft.Extensions.Hosting;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel;
 
 namespace CrystalClarityEyewearWebApp.Models
 {
-    public class Category
+    public class Category : CommonAbstract
     {
+        public Category() 
+        { 
+            this.News = new HashSet<News>();
+            this.Post = new HashSet<Post>();
+        }
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int CatId { get; set; }
+        public int Id { get; set; }
 
         [Required]
-        [DisplayName("Tên danh mục")]
-        public string Name { get; set; }
+        [StringLength(200)]
+        public string Title { get; set; }
 
-        [DisplayName("Mô tả")]
         public string? Description { get; set; }
 
-        public int? ParentId { get; set; }
+        public string? Icon { get; set; }
 
-        public int? Levels { get; set; }
+        public string? Alias { get; set; }
 
-        public int? Ordering { get; set; }
+        public string? SeoTitle { get; set; }
 
-        public bool? IsPublish { get; set; }
+        public string? SeoDescription { get; set; }
 
-        [DisplayName("Hình ảnh")]
-        public string? Image { get; set; }
+        public string? SeoKeywords { get; set; }
 
-        [ForeignKey("ParentId")]
-        public virtual Category ParentCategory { get; set; }
+        public int Position { get; set; }
 
-        public virtual ICollection<Category> Subcategories { get; set; } = new List<Category>();
+        public bool IsActive { get; set; }
 
-        public virtual ICollection<Product> Products { get; set; } = new List<Product>();
+        public ICollection<News> News { get; set; }
+
+        public ICollection<Post> Post { get; set; }
     }
 }

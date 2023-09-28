@@ -30,11 +30,6 @@ namespace CrystalClarityEyewearWebApp.Models
             .IsRequired()
             .OnDelete(DeleteBehavior.Cascade); // Để xóa địa chỉ khi người dùng bị xóa
 
-            builder.Entity<Category>()
-            .HasMany(c => c.Subcategories)
-            .WithOne(p => p.ParentCategory)
-            .OnDelete(DeleteBehavior.Restrict); // Chọn DeleteBehavior.Restrict để tắt Cascade Delete
-
             builder.Entity<UserAddress>()
             .HasOne(ua => ua.Province)
             .WithMany()
@@ -46,25 +41,25 @@ namespace CrystalClarityEyewearWebApp.Models
             .WithMany()
             .HasForeignKey(ua => ua.WardId)
             .OnDelete(DeleteBehavior.Restrict);
-
-            builder.Entity<Product>()
-            .HasOne(p => p.Category)
-            .WithMany(c => c.Products)
-            .HasForeignKey(p => p.CatId);
-
         }
 
-        public DbSet<Category> Category { get; set; }
+        public DbSet<Advertisement> Advertisement { get; set; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<Contact> Contact { get; set; }
         public DbSet<District> District { get; set; }
         public DbSet<FeedBack> FeedBack { get; set; }
+        public DbSet<News> News { get; set; }
         public DbSet<Order> Order { get; set; }
         public DbSet<OrderDetail> OrderDetail { get; set; }
         public DbSet<Page> Pages { get; set; }
         public DbSet<PaymentMethod> PaymentMethods { get; set; }
         public DbSet<Post> Posts { get; set; }
-        public DbSet<PostCategory> PostCategories { get; set; }
         public DbSet<Product> Products { get; set; }
+        public DbSet<ProductCategory> ProductCategories { get; set; }
+        public DbSet<ProductImage> ProductImages { get; set; }
         public DbSet<Province> Provinces { get; set; }
+        public DbSet<Subcribe> Subcribe { get; set; }
+        public DbSet<SystemSetting> SystemSetting { get; set; }
         public DbSet<UserAddress> UserAddresses { get; set; }
         public DbSet<Ward> Wards { get; set; }
     }

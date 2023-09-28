@@ -1,0 +1,66 @@
+﻿@model IEnumerable<CrystalClarityEyewearWebApp.Models.Category>
+
+@{
+	ViewData["Title"] = "Index";
+	Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+	<div class="container-fluid">
+		<div class="row mb-2">
+			<div class="col-sm-6">
+				<h1>Category</h1>
+			</div>
+			<div class="col-sm-6">
+				<ol class="breadcrumb float-sm-right">
+					<li class="breadcrumb-item"><a asp-area="Admin" asp-controller="Home" asp-action="Index">Home</a></li>
+					<li class="breadcrumb-item active"><a asp-area="Admin" asp-controller="AdminCategories" asp-action="Index">Category</a></li>
+				</ol>
+			</div>
+		</div>
+	</div><!-- /.container-fluid -->
+</section>
+
+<section class="content">
+	<p>
+		<a asp-action="Create">Create New</a>
+	</p>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>
+					@Html.DisplayNameFor(model => model.Id)
+				</th>
+				<th>
+					@Html.DisplayNameFor(model => model.Title)
+				</th>
+				<th>
+					@Html.DisplayNameFor(model => model.Position)
+				</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (var item in Model)
+			{
+				<tr>
+					<td>
+						@Html.DisplayFor(modelItem => item.Id)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.Title)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.Position)
+					</td>
+					<td>
+						<button class="btn btn-outline-success disabled mr-2" type="button"><a asp-action="Edit" asp-route-id="@item.Id">Edit</a></button>
+						<button class="btn btn-outline-info disabled mr-2" type="button"><a asp-action="Details" asp-route-id="@item.Id">Details</a></button>
+						<button class="btn btn-outline-danger disabled mr-2" type="button"><a asp-action="Delete" asp-route-id="@item.Id">Delete</a></button>
+					</td>
+				</tr>
+			}
+		</tbody>
+	</table>
+</section>
