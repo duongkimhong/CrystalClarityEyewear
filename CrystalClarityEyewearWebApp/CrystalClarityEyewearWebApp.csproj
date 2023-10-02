@@ -17,6 +17,7 @@
     <Compile Include="Areas\Admin\Controllers\AdminAccountsController.cs" />
     <Compile Include="Areas\Admin\Controllers\AdminCategoriesController.cs" />
     <Compile Include="Areas\Admin\Controllers\AdminNewsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\AdminPostsController.cs" />
     <Compile Include="Areas\Admin\Controllers\AdminProductsController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
   </ItemGroup>
@@ -48,13 +49,15 @@
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="7.0.9" />
     <PackageReference Include="MimeKit" Version="4.1.0" />
-    <PackageReference Include="PagedList.Core" Version="1.17.4" />
+    <PackageReference Include="X.PagedList" Version="8.4.7" />
+    <PackageReference Include="X.PagedList.Mvc.Core" Version="8.4.7" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="wwwroot\ckfinder\userfiles\" />
+    <Folder Include="wwwroot\Uploads\Post\" />
     <Folder Include="wwwroot\Uploads\News\" />
   </ItemGroup>
 
@@ -69,6 +72,10 @@
     <None Include="Areas\Admin\Views\AdminNews\Delete.cshtml" />
     <None Include="Areas\Admin\Views\AdminNews\Edit.cshtml" />
     <None Include="Areas\Admin\Views\AdminNews\Index.cshtml" />
+    <None Include="Areas\Admin\Views\AdminPosts\Create.cshtml" />
+    <None Include="Areas\Admin\Views\AdminPosts\Delete.cshtml" />
+    <None Include="Areas\Admin\Views\AdminPosts\Edit.cshtml" />
+    <None Include="Areas\Admin\Views\AdminPosts\Index.cshtml" />
     <None Include="Areas\Admin\Views\AdminProducts\Index.cshtml" />
     <None Include="Areas\Admin\Views\Home\Index.cshtml" />
     <None Include="Areas\Admin\Views\Shared\Error.cshtml" />

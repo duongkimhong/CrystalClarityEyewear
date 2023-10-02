@@ -374,7 +374,6 @@ D:\ASP.NET CORE MVC\CrystalClarityEyewearWebApp\CrystalClarityEyewearWebApp\bin\
 D:\ASP.NET CORE MVC\CrystalClarityEyewearWebApp\CrystalClarityEyewearWebApp\bin\Debug\net7.0\NuGet.ProjectModel.dll
 D:\ASP.NET CORE MVC\CrystalClarityEyewearWebApp\CrystalClarityEyewearWebApp\bin\Debug\net7.0\NuGet.Protocol.dll
 D:\ASP.NET CORE MVC\CrystalClarityEyewearWebApp\CrystalClarityEyewearWebApp\bin\Debug\net7.0\NuGet.Versioning.dll
-D:\ASP.NET CORE MVC\CrystalClarityEyewearWebApp\CrystalClarityEyewearWebApp\bin\Debug\net7.0\PagedList.Core.dll
 D:\ASP.NET CORE MVC\CrystalClarityEyewearWebApp\CrystalClarityEyewearWebApp\bin\Debug\net7.0\System.CodeDom.dll
 D:\ASP.NET CORE MVC\CrystalClarityEyewearWebApp\CrystalClarityEyewearWebApp\bin\Debug\net7.0\System.Composition.AttributedModel.dll
 D:\ASP.NET CORE MVC\CrystalClarityEyewearWebApp\CrystalClarityEyewearWebApp\bin\Debug\net7.0\System.Composition.Convention.dll
@@ -575,3 +574,6 @@ D:\ASP.NET CORE MVC\CrystalClarityEyewearWebApp\CrystalClarityEyewearWebApp\bin\
 D:\ASP.NET CORE MVC\CrystalClarityEyewearWebApp\CrystalClarityEyewearWebApp\bin\Debug\net7.0\System.Web.WebPages.Razor.dll
 D:\ASP.NET CORE MVC\CrystalClarityEyewearWebApp\CrystalClarityEyewearWebApp\bin\Debug\net7.0\System.Web.WebPages.dll
 D:\ASP.NET CORE MVC\CrystalClarityEyewearWebApp\CrystalClarityEyewearWebApp\bin\Debug\net7.0\Microsoft.Web.Infrastructure.dll
+D:\ASP.NET CORE MVC\CrystalClarityEyewearWebApp\CrystalClarityEyewearWebApp\bin\Debug\net7.0\JetBrains.Annotations.dll
+D:\ASP.NET CORE MVC\CrystalClarityEyewearWebApp\CrystalClarityEyewearWebApp\bin\Debug\net7.0\X.PagedList.dll
+D:\ASP.NET CORE MVC\CrystalClarityEyewearWebApp\CrystalClarityEyewearWebApp\bin\Debug\net7.0\X.PagedList.Mvc.Core.dll

@@ -72,49 +72,12 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a asp-area="Admin" asp-controller="AdminNews" asp-action="Index" class="nav-link">
-                        <i class="nav-icon fas fa-copy"></i>
-                        <p>
-                            Tin tức
-                            <i class="fas fa-angle-left right"></i>
-                            <span class="badge badge-info right">6</span>
-                        </p>
-                    </a>
+                    <a asp-area="Admin" asp-controller="AdminNews" asp-action="Index" class="nav-link"><i class="nav-icon fas fa-copy"></i>Tin tức</a>
+                    @* <a asp-area="Admin" href="https://localhost:7117/Admin/adminnews" class="nav-link"><i class="nav-icon fas fa-copy"></i>Tin tức</a> *@
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-chart-pie"></i>
-                        <p>
-                            Bài viết
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="pages/charts/chartjs.html" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>ChartJS</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="pages/charts/flot.html" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Flot</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="pages/charts/inline.html" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Inline</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="pages/charts/uplot.html" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>uPlot</p>
-                            </a>
-                        </li>
-                    </ul>
+                    <a asp-area="Admin" asp-controller="AdminPosts" asp-action="Index" class="nav-link"><i class="nav-icon fas fa-chart-pie"></i>Bài viết</a>
+                    @* <a asp-area="Admin" href="https://localhost:7117/Admin/adminposts" class="nav-link"><i class="nav-icon fas fa-chart-pie"></i>Bài viết </a> *@
                 </li>
                 <li class="nav-item">
                     <a href="#" class="nav-link">

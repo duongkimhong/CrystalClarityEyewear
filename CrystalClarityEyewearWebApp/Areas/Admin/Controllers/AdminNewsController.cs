@@ -7,10 +7,13 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using CrystalClarityEyewearWebApp.Models;
 using AppContext = CrystalClarityEyewearWebApp.Models.AppContext;
+using X.PagedList;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CrystalClarityEyewearWebApp.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize]
     public class AdminNewsController : Controller
     {
         private readonly AppContext _context;
@@ -23,10 +26,24 @@ namespace CrystalClarityEyewearWebApp.Areas.Admin.Controllers
         }
 
         // GET: Admin/AdminNews
-        public async Task<IActionResult> Index()
+        public async Task<ActionResult> Index(string searchText, int? page)
         {
-            var appContext = _context.News.Include(n => n.Category);
-            return View(await appContext.ToListAsync());
+            // Số lượng mục trên mỗi trang
+            int pageSize = 10;
+
+            // Trang hiện tại (nếu không được đặt, mặc định là 1)
+            int pageNumber = (page ?? 1);
+            IEnumerable<News> appContext = _context.News.Include(p => p.Category);
+
+            if (!string.IsNullOrEmpty(searchText))
+            {
+                // Lọc dữ liệu dựa trên searchText
+                appContext = appContext.Where(x => x.Alias.Equals(searchText) || x.Title.Contains(searchText));
+            }
+
+            var pagedListNews = await appContext.ToPagedListAsync(pageNumber, pageSize);
+
+            return View(pagedListNews);
         }
 
         // GET: Admin/AdminNews/Details/5

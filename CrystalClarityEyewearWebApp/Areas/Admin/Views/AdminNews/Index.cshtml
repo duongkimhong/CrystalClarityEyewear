@@ -1,4 +1,4 @@
-﻿@model IEnumerable<CrystalClarityEyewearWebApp.Models.News>
+﻿@model IPagedList<CrystalClarityEyewearWebApp.Models.News>
 
 @{
     ViewData["Title"] = "Index";
@@ -6,25 +6,54 @@
 }
 
 <h1>Index</h1>
+@* <div class="row">
+    <div class="col-md-6 ml-2">
+        <form asp-action="Index" asp-controller="AdminNews" method="get" class="input-group input-group-sm">
+            <input type="text" name="searchText" class="form-control" />
+            <span class="input-group-append">
+                <button type="submit" class="btn btn-info btn-flat">Search</button>
+            </span>
+        </form>
+    </div>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+    <div class="col-md-6 text-right mr-2">
+        <a asp-action="Create" class="btn btn-primary">Create New</a>
+    </div>
+</div> *@
+
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="Index" asp-controller="AdminNews" method="get" class="input-group input-group-sm">
+            <input type="text" name="searchText" class="form-control" />
+            <span class="input-group-append">
+                <button type="submit" class="btn btn-info btn-flat">Search</button>
+            </span>
+        </form>
+    </div>
+    <div class="col-md-6 text-right">
+        <a asp-action="Create" class="btn btn-primary">Create New</a>
+    </div>
+</div>
+
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Image)
+                @* @Html.DisplayNameFor(model => model.Image) *@
+                Hình ảnh
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Title)
+                @* @Html.DisplayNameFor(model => model.Title) *@
+                Tiêu đề
             </th>
             
             <th>
-                @Html.DisplayNameFor(model => model.CreateDate)
+                @* @Html.DisplayNameFor(model => model.CreateDate) *@
+                Ngày tạo
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ModifiedDate)
+                @* @Html.DisplayNameFor(model => model.ModifiedDate) *@
+                Ngày chỉnh sửa
             </th>
             <th>
                 Hiển thị
@@ -43,10 +72,10 @@
                 @Html.DisplayFor(modelItem => item.Title)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.CreateDate)
+                    @Html.DisplayFor(modelItem => item.CreateDate)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ModifiedDate)
+                    @Html.DisplayFor(modelItem => item.ModifiedDate)
             </td>
             <td class="text-center">
                 @Html.Raw(strCheck)
@@ -60,6 +89,37 @@
 }
     </tbody>
 </table>
+
+@* <div class="pagination-container" style="text-align: right;">
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+</div> *@
+
+<div class="pagination-container d-flex justify-content-end mr-5">
+    <ul class="pagination">
+
+        @if (Model.HasPreviousPage)
+        {
+            <li class="page-item">
+                <a class="page-link" href="@Url.Action("Index", new { page = Model.PageNumber - 1 })">Previous</a>
+            </li>
+        }
+
+        @for (var i = 1; i <= Model.PageCount; i++)
+        {
+            <li class="page-item @(i == Model.PageNumber ? "active" : "")">
+                <a class="page-link" href="@Url.Action("Index", new { page = i })">@i</a>
+            </li>
+        }
+
+        @if (Model.HasNextPage)
+        {
+            <li class="page-item">
+                <a class="page-link" href="@Url.Action("Index", new { page = Model.PageNumber + 1 })">Next</a>
+            </li>
+        }
+
+    </ul>
+</div>
 
 <section scripts>
     <script>

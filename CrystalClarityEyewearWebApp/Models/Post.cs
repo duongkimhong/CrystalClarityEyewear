@@ -17,20 +17,22 @@ namespace CrystalClarityEyewearWebApp.Models
 
         public string Detail { get; set; }
 
-        public string Image { get; set; }
+        public string? Image { get; set; }
+        [NotMapped] // Đánh dấu thuộc tính này để nó không được ánh xạ vào cơ sở dữ liệu
+        public IFormFile? CoverImage { get; set; }
 
-        public string Alias { get; set; }
+        public string? Alias { get; set; }
 
-        public int CategoryId { get; set; }
+        public int? CategoryId { get; set; }
 
-        public string SeoTitle { get; set; }
+        public string? SeoTitle { get; set; }
 
-        public string SeoDescription { get; set; }
+        public string? SeoDescription { get; set; }
 
-        public string SeoKeywords { get; set; }
+        public string? SeoKeywords { get; set; }
 
         public bool IsActive { get; set; }
 
-        public virtual Category Category { get; set; }
+        public virtual Category? Category { get; set; }
     }
 }

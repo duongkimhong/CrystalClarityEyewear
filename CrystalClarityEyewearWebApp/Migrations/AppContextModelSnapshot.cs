@@ -507,10 +507,9 @@ namespace CrystalClarityEyewearWebApp.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Alias")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("CategoryId")
+                    b.Property<int?>("CategoryId")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("CreateDate")
@@ -528,7 +527,6 @@ namespace CrystalClarityEyewearWebApp.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Image")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsActive")
@@ -541,15 +539,12 @@ namespace CrystalClarityEyewearWebApp.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("SeoDescription")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SeoKeywords")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SeoTitle")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Title")
@@ -1050,9 +1045,7 @@ namespace CrystalClarityEyewearWebApp.Migrations
                 {
                     b.HasOne("CrystalClarityEyewearWebApp.Models.Category", "Category")
                         .WithMany("Post")
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CategoryId");
 
                     b.Navigation("Category");
                 });
